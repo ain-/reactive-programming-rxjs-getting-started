@@ -14,12 +14,16 @@ function renderMovies(movies) {
     });
 }
 
-loadWithFetch("movies.json")
-    .subscribe(renderMovies,
-        e => console.log(`error: ${e}`),
-        () => console.log("complete!"));
+let subscription =
+    load("moviess.json")
+        .subscribe(renderMovies,
+            e => console.log(`error: ${e}`),
+            () => console.log("complete!"));
 
-click.flatMap(e => loadWithFetch("moviess.json"))
+console.log(subscription);
+//subscription.unsubscribe();
+
+click.flatMap(e => loadWithFetch("movies.json"))
     .subscribe(
     renderMovies,
     e => console.log(`error: ${e}`),
